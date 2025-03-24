@@ -4,7 +4,7 @@ variable "resource_groups" {
     location = string
     tags     = map(string)
   }))
-  description = "Configuration for Azure resource groups with name, location, and tags."
+  description = "A map of resource group objects"
 }
 
 variable "app_service_plans" {
@@ -14,7 +14,7 @@ variable "app_service_plans" {
     worker_count = number
     tags         = map(string)
   }))
-  description = "Map containing configuration details for Azure App Service Plans."
+  description = "A Map containing configuration details for Azure App Service Plans."
 }
 
 variable "app_services" {
@@ -22,7 +22,7 @@ variable "app_services" {
     name = string
     tags = map(string)
   }))
-  description = "Map containing configuration details for Windows App Services."
+  description = "A Map containing configuration details for Windows App Services."
 }
 
 variable "access_rules" {
