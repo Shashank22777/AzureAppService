@@ -4,7 +4,7 @@ variable "resource_groups" {
     location = string
     tags     = map(string)
   }))
-  description = "Configuration for Azure resource groups with name, location, and tags."
+  description = "Map of resource groups with their name, location, and tags."
 }
 
 variable "app_service_plans" {
@@ -14,7 +14,7 @@ variable "app_service_plans" {
     worker_count = number
     tags         = map(string)
   }))
-  description = "Map containing configuration details for Azure App Service Plans."
+  description = "Map of App Service Plans with their name, SKU, worker count, and tags."
 }
 
 variable "app_services" {
@@ -22,7 +22,7 @@ variable "app_services" {
     name = string
     tags = map(string)
   }))
-  description = "Map containing configuration details for Windows App Services."
+  description = "Map of App Services with their name and tags."
 }
 
 variable "access_rules" {
@@ -36,7 +36,7 @@ variable "access_rules" {
       service_tag = string
     })
   })
-  description = "Configuration for IP access rules for App Services."
+  description = "Object containing access rules for App Services. It includes allow-ip rule and allow-TM rule."
 }
 
 variable "traffic_manager" {
@@ -45,5 +45,5 @@ variable "traffic_manager" {
     routing_method = string
     tags           = map(string)
   })
-  description = "Configuration for Azure Traffic Manager profile with name, routing method, and tags."
+  description = "Configuration for Traffic Manager profile including name, routing method, and tags."
 }
