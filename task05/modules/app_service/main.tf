@@ -2,7 +2,7 @@ resource "azurerm_windows_web_app" "web_app" {
   name                = var.name
   location            = var.location
   resource_group_name = var.resource_group_name
-  service_plan_id = var.service_plan_id  # Fixed to use the variable
+  service_plan_id     = var.service_plan_id # Fixed to use the variable
 
   identity {
     type = "SystemAssigned"

@@ -1,58 +1,58 @@
 # Reference Resource Group Modules
 module "rg1" {
-  source = "./modules/resource_group"
-  name   = var.resource_groups["rg1"].name
+  source   = "./modules/resource_group"
+  name     = var.resource_groups["rg1"].name
   location = var.resource_groups["rg1"].location
   tags     = var.resource_groups["rg1"].tags
 }
 
 module "rg2" {
-  source = "./modules/resource_group"
-  name   = var.resource_groups["rg2"].name
+  source   = "./modules/resource_group"
+  name     = var.resource_groups["rg2"].name
   location = var.resource_groups["rg2"].location
   tags     = var.resource_groups["rg2"].tags
 }
 
 module "rg3" {
-  source = "./modules/resource_group"
-  name   = var.resource_groups["rg3"].name
+  source   = "./modules/resource_group"
+  name     = var.resource_groups["rg3"].name
   location = var.resource_groups["rg3"].location
   tags     = var.resource_groups["rg3"].tags
 }
 
 # Reference App Service Plan Modules
 module "asp1" {
-  source = "./modules/app_service_plan"
-  name     = var.app_service_plans["asp1"].name
-  location = module.rg1.location
+  source              = "./modules/app_service_plan"
+  name                = var.app_service_plans["asp1"].name
+  location            = module.rg1.location
   resource_group_name = module.rg1.name
-  sku      = var.app_service_plans["asp1"].sku
-  worker_count = var.app_service_plans["asp1"].worker_count
-  tags    = var.app_service_plans["asp1"].tags
+  sku                 = var.app_service_plans["asp1"].sku
+  worker_count        = var.app_service_plans["asp1"].worker_count
+  tags                = var.app_service_plans["asp1"].tags
 }
 
 module "asp2" {
-  source = "./modules/app_service_plan"
-  name     = var.app_service_plans["asp2"].name
-  location = module.rg2.location
+  source              = "./modules/app_service_plan"
+  name                = var.app_service_plans["asp2"].name
+  location            = module.rg2.location
   resource_group_name = module.rg2.name
-  sku      = var.app_service_plans["asp2"].sku
-  worker_count = var.app_service_plans["asp2"].worker_count
-  tags    = var.app_service_plans["asp2"].tags
+  sku                 = var.app_service_plans["asp2"].sku
+  worker_count        = var.app_service_plans["asp2"].worker_count
+  tags                = var.app_service_plans["asp2"].tags
 }
 
 module "app1" {
   source = "./modules/app_service"
 
-  name                  = var.app_services["app1"].name
-  location              = module.rg1.location
-  resource_group_name   = module.rg1.name
-  service_plan_id       = module.asp1.id         # Must pass service_plan_id here
-  ip_restrictions       = [
+  name                = var.app_services["app1"].name
+  location            = module.rg1.location
+  resource_group_name = module.rg1.name
+  service_plan_id     = module.asp1.id # Must pass service_plan_id here
+  ip_restrictions = [
     {
-      name        = var.access_rules.allow_ip_rule.name
-      ip_address  = var.access_rules.allow_ip_rule.allowed_ip
-      action      = "Allow"
+      name       = var.access_rules.allow_ip_rule.name
+      ip_address = var.access_rules.allow_ip_rule.allowed_ip
+      action     = "Allow"
     },
     {
       name        = var.access_rules.allow_tm_rule.name
@@ -66,15 +66,15 @@ module "app1" {
 module "app2" {
   source = "./modules/app_service"
 
-  name                  = var.app_services["app2"].name
-  location              = module.rg2.location
-  resource_group_name   = module.rg2.name
-  service_plan_id       = module.asp2.id         # Must pass service_plan_id here
-  ip_restrictions       = [
+  name                = var.app_services["app2"].name
+  location            = module.rg2.location
+  resource_group_name = module.rg2.name
+  service_plan_id     = module.asp2.id # Must pass service_plan_id here
+  ip_restrictions = [
     {
-      name        = var.access_rules.allow_ip_rule.name
-      ip_address  = var.access_rules.allow_ip_rule.allowed_ip
-      action      = "Allow"
+      name       = var.access_rules.allow_ip_rule.name
+      ip_address = var.access_rules.allow_ip_rule.allowed_ip
+      action     = "Allow"
     },
     {
       name        = var.access_rules.allow_tm_rule.name
@@ -89,9 +89,9 @@ module "app2" {
 module "traffic_manager" {
   source              = "./modules/traffic_manager"
   name                = var.traffic_manager.name
-  resource_group_name = module.rg3.name  # RG3 provides the resource group for the Traffic Manager profile
+  resource_group_name = module.rg3.name # RG3 provides the resource group for the Traffic Manager profile
   routing_method      = var.traffic_manager.routing_method
-  endpoints           = [
+  endpoints = [
     {
       name     = module.app1.name
       type     = "azureEndpoints"

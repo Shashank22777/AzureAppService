@@ -15,10 +15,10 @@ variable "routing_method" {
 
 variable "endpoints" {
   type = list(object({
-    name     = string    # Name of the endpoint
-    type     = string    # Type of the endpoint (e.g., "azureEndpoints")
-    target   = string    # Target resource (e.g., App Service URL)
-    priority = number    # Priority for routing
+    name     = string # Name of the endpoint
+    type     = string # Type of the endpoint (e.g., "azureEndpoints")
+    target   = string # Target resource (e.g., App Service URL)
+    priority = number # Priority for routing
   }))
   description = "A list of Traffic Manager endpoints to be added to the profile"
 }
