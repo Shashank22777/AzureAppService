@@ -19,8 +19,6 @@ module "rg3" {
   location = var.resource_groups["rg3"].location
   tags     = var.resource_groups["rg3"].tags
 }
-
-# Reference App Service Plan Modules
 module "asp1" {
   source              = "./modules/app_service_plan"
   name                = var.app_service_plans["asp1"].name
@@ -28,6 +26,7 @@ module "asp1" {
   resource_group_name = module.rg1.name
   sku                 = var.app_service_plans["asp1"].sku
   worker_count        = var.app_service_plans["asp1"].worker_count
+  os_type             = "Windows"
   tags                = var.app_service_plans["asp1"].tags
 }
 
@@ -38,24 +37,26 @@ module "asp2" {
   resource_group_name = module.rg2.name
   sku                 = var.app_service_plans["asp2"].sku
   worker_count        = var.app_service_plans["asp2"].worker_count
+  os_type             = "Windows"
   tags                = var.app_service_plans["asp2"].tags
 }
 
 module "app1" {
-  source = "./modules/app_service"
-
+  source              = "./modules/app_service"
   name                = var.app_services["app1"].name
   location            = module.rg1.location
   resource_group_name = module.rg1.name
-  service_plan_id     = module.asp1.id # Must pass service_plan_id here
+  service_plan_id     = module.asp1.id
   ip_restrictions = [
     {
-      name       = var.access_rules.allow_ip_rule.name
-      ip_address = var.access_rules.allow_ip_rule.allowed_ip
-      action     = "Allow"
+      name        = var.access_rules.allow_ip_rule.name
+      ip_address  = var.access_rules.allow_ip_rule.allowed_ip
+      service_tag = null
+      action      = "Allow"
     },
     {
       name        = var.access_rules.allow_tm_rule.name
+      ip_address  = null
       service_tag = var.access_rules.allow_tm_rule.service_tag
       action      = "Allow"
     }
@@ -69,15 +70,17 @@ module "app2" {
   name                = var.app_services["app2"].name
   location            = module.rg2.location
   resource_group_name = module.rg2.name
-  service_plan_id     = module.asp2.id # Must pass service_plan_id here
+  service_plan_id     = module.asp2.id
   ip_restrictions = [
     {
-      name       = var.access_rules.allow_ip_rule.name
-      ip_address = var.access_rules.allow_ip_rule.allowed_ip
-      action     = "Allow"
+      name        = var.access_rules.allow_ip_rule.name
+      ip_address  = var.access_rules.allow_ip_rule.allowed_ip
+      service_tag = null
+      action      = "Allow"
     },
     {
       name        = var.access_rules.allow_tm_rule.name
+      ip_address  = null
       service_tag = var.access_rules.allow_tm_rule.service_tag
       action      = "Allow"
     }

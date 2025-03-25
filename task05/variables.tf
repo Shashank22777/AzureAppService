@@ -47,3 +47,4 @@ variable "traffic_manager" {
   })
   description = "Configuration for Traffic Manager profile including name, routing method, and tags."
 }
+

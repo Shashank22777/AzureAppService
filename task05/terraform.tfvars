@@ -21,12 +21,14 @@ app_service_plans = {
     name         = "cmaz-7850b25e-mod5-asp-01"
     sku          = "P0v3"
     worker_count = 2
+    os_type      = "Windows"
     tags         = { Creator = "bandari_shashank@epam.com" }
   },
   asp2 = {
     name         = "cmaz-7850b25e-mod5-asp-02"
     sku          = "P1v3"
     worker_count = 1
+    os_type      = "Windows"
     tags         = { Creator = "bandari_shashank@epam.com" }
   }
 }

@@ -21,8 +21,8 @@ variable "service_plan_id" {
 variable "ip_restrictions" {
   type = list(object({
     name        = string
-    ip_address  = string
-    service_tag = string
+    ip_address  = optional(string)
+    service_tag = optional(string)
     action      = string
   }))
   description = "List of IP restrictions applied to the App Service."
