@@ -44,17 +44,6 @@ app_services = {
   }
 }
 
-# access_rules = {
-#   allow_ip_rule = {
-#     name       = "allow-ip"
-#     allowed_ip = "18.153.146.156"
-#   },
-#   allow_tm_rule = {
-#     name        = "allow-tm"
-#     service_tag = "AzureTrafficManager"
-#   }
-# }
-
 traffic_manager = {
   name           = "cmaz-7850b25e-mod5-traf"
   routing_method = "Performance"
