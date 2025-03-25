@@ -25,19 +25,19 @@ variable "app_services" {
   description = "Map of App Services with their name and tags."
 }
 
-variable "access_rules" {
-  type = object({
-    allow_ip_rule = object({
-      name       = string
-      allowed_ip = string
-    }),
-    allow_tm_rule = object({
-      name        = string
-      service_tag = string
-    })
-  })
-  description = "Object containing access rules for App Services. It includes allow-ip rule and allow-TM rule."
-}
+# variable "access_rules" {
+#   type = object({
+#     allow_ip_rule = object({
+#       name       = string
+#       allowed_ip = string
+#     }),
+#     allow_tm_rule = object({
+#       name        = string
+#       service_tag = string
+#     })
+#   })
+#   description = "Object containing access rules for App Services. It includes allow-ip rule and allow-TM rule."
+# }
 
 variable "traffic_manager" {
   type = object({
