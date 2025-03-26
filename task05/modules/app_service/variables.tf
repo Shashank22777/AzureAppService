@@ -24,6 +24,7 @@ variable "ip_restrictions" {
     ip_address  = optional(string)
     service_tag = optional(string)
     action      = string
+    priority    = number
   }))
   description = "List of IP restrictions applied to the App Service."
 }
