@@ -17,13 +17,11 @@ resource "azurerm_traffic_manager_profile" "tm_profile" {
   tags = var.tags
 }
 
-resource "azurerm_traffic_manager_endpoint" "tm_endpoint" {
-  for_each = { for index, endpoint in var.endpoints : index => endpoint }
-  #for_each = var.endpoints
-  name                = each.value.name
-  profile_name        = azurerm_traffic_manager_profile.tm_profile.name
-  resource_group_name = var.resource_group_name
-  type                = each.value.type
-  target              = each.value.target
-  priority            = each.value.priority
+resource "azurerm_traffic_manager_azure_endpoint" "tm_endpoint" {
+  for_each   = { for index, endpoint in var.endpoints : index => endpoint }
+  profile_id = azurerm_traffic_manager_profile.tm_profile
+
+  name               = each.value.name
+  target_resource_id = each.value.target
+  priority           = each.value.priority
 }

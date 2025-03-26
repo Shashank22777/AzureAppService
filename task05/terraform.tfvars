@@ -50,13 +50,3 @@ traffic_manager = {
   tags           = { Creator = "bandari_shashank@epam.com" }
 }
 
-access_rules = {
-  allow_ip_rule = {
-    name       = "allow-ip"          # IP-based rule name
-    allowed_ip = "18.153.146.156/32" # IP address or CIDR
-  },
-  allow_tm_rule = {
-    name        = "allow-tm"            # Traffic Manager rule name
-    service_tag = "AzureTrafficManager" # Azure service tag for Traffic Manager
-  }
-}
