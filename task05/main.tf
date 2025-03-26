@@ -48,8 +48,8 @@ module "app1" {
   resource_group_name = module.rg1.name
   service_plan_id     = module.asp1.id
   ip_restrictions = [
-    { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null, priority = 65000 },
-    { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null, priority = 65000 },
+    { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null },
+    { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null },
     { name = "deny-all", ip_address = null, service_tag = "Any", action = "Deny", priority = 2147483647 }
   ]
   tags = var.app_services["app1"].tags
@@ -62,8 +62,8 @@ module "app2" {
   resource_group_name = module.rg2.name
   service_plan_id     = module.asp2.id
   ip_restrictions = [
-    { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null, priority = 65000 },
-    { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null, priority = 65000 },
+    { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null },
+    { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null },
     { name = "deny-all", ip_address = null, service_tag = "Any", action = "Deny", priority = 2147483647 }
   ]
   tags = var.app_services["app2"].tags
