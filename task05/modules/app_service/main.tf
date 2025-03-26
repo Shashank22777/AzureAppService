@@ -15,9 +15,11 @@ resource "azurerm_windows_web_app" "web_app" {
     dynamic "ip_restriction" {
       for_each = var.ip_restrictions
       content {
-        name        = ip_restriction.value.name
-        ip_address  = try(ip_restriction.value.ip_address, null)  # IP address can be missing
-        service_tag = try(ip_restriction.value.service_tag, null) # Service tag can be missing
+        name = ip_restriction.value.name
+        #ip_address  = try(ip_restriction.value.ip_address, null)  # IP address can be missing
+        #service_tag = try(ip_restriction.value.service_tag, null) # Service tag can be missing
+        ip_address  = ip_restriction.value.ip_address != null ? ip_restriction.value.ip_address : null
+        service_tag = ip_restriction.value.service_tag != null ? ip_restriction.value.service_tag : null
         action      = ip_restriction.value.action
         priority    = ip_restriction.value.priority
       }
