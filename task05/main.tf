@@ -77,13 +77,13 @@ module "traffic_manager" {
     {
       name     = module.app1.name
       type     = "azureEndpoints"
-      target   = module.app1.default_hostname
+      target   = module.app1.resource_id
       priority = 1
     },
     {
       name     = module.app2.name
       type     = "azureEndpoints"
-      target   = module.app2.default_hostname
+      target   = module.app2.resource_id
       priority = 2
     }
   ]

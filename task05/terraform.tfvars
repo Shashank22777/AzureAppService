@@ -50,3 +50,14 @@ traffic_manager = {
   tags           = { Creator = "bandari_shashank@epam.com" }
 }
 
+# access_rules = {
+#   allow_ip_rule = {
+#     name       = "allow-ip"
+#     allowed_ip = "18.153.146.156"
+#   },
+#   allow_tm_rule = {
+#     name        = "allow-tm"
+#     service_tag = "AzureTrafficManager"
+#   }
+# }
+
