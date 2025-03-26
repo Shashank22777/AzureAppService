@@ -19,7 +19,7 @@ resource "azurerm_traffic_manager_profile" "tm_profile" {
 
 resource "azurerm_traffic_manager_azure_endpoint" "tm_endpoint" {
   for_each   = { for index, endpoint in var.endpoints : index => endpoint }
-  profile_id = azurerm_traffic_manager_profile.tm_profile
+  profile_id = azurerm_traffic_manager_profile.tm_profile.id
 
   name               = each.value.name
   target_resource_id = each.value.target
