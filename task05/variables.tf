@@ -38,12 +38,12 @@ variable "access_rules" {
   type = object({
     allow_ip_rule = object({
       name       = string
-      allowed_ip = string
+      allowed_ip = string # Single IP or CIDR notation, e.g., "18.153.146.156/32"
     }),
     allow_tm_rule = object({
       name        = string
-      service_tag = string
+      service_tag = string # Predefined Azure Traffic Manager service tag
     })
   })
-  description = "Rules for access restrictions."
+  description = "Access rules for IP restrictions and Traffic Manager."
 }

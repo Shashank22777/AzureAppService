@@ -48,22 +48,41 @@ module "app1" {
   resource_group_name = module.rg1.name
   service_plan_id     = module.asp1.id
   ip_restrictions = [
-    { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null },
-    { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null }
+    {
+      name        = var.access_rules.allow_ip_rule.name
+      action      = "Allow"
+      ip_address  = var.access_rules.allow_ip_rule.allowed_ip
+      service_tag = null
+    },
+    {
+      name        = var.access_rules.allow_tm_rule.name
+      action      = "Allow"
+      ip_address  = null
+      service_tag = var.access_rules.allow_tm_rule.service_tag
+    }
   ]
   tags = var.app_services["app1"].tags
 }
 
 module "app2" {
-  source = "./modules/app_service"
-
+  source              = "./modules/app_service"
   name                = var.app_services["app2"].name
   location            = module.rg2.location
   resource_group_name = module.rg2.name
   service_plan_id     = module.asp2.id
   ip_restrictions = [
-    { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null },
-    { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null }
+    {
+      name        = var.access_rules.allow_ip_rule.name
+      action      = "Allow"
+      ip_address  = var.access_rules.allow_ip_rule.allowed_ip
+      service_tag = null
+    },
+    {
+      name        = var.access_rules.allow_tm_rule.name
+      action      = "Allow"
+      ip_address  = null
+      service_tag = var.access_rules.allow_tm_rule.service_tag
+    }
   ]
   tags = var.app_services["app2"].tags
 }

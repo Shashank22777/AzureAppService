@@ -52,11 +52,11 @@ traffic_manager = {
 
 access_rules = {
   allow_ip_rule = {
-    name       = "allow-ip"       # Rule name for IP-based restriction
-    allowed_ip = "18.153.146.156" # IP address for verification agent
+    name       = "allow-ip"          # IP-based rule name
+    allowed_ip = "18.153.146.156/32" # IP address or CIDR
   },
   allow_tm_rule = {
-    name        = "allow-tm"            # Rule name for Traffic Manager-based restriction
-    service_tag = "AzureTrafficManager" # Service tag for Traffic Manager
+    name        = "allow-tm"            # Traffic Manager rule name
+    service_tag = "AzureTrafficManager" # Azure service tag for Traffic Manager
   }
 }
