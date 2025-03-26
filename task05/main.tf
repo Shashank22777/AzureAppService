@@ -50,7 +50,7 @@ module "app1" {
   ip_restrictions = [
     { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null, priority = 65000 },
     { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null, priority = 65000 },
-    { name = "deny-all", ip_address = "Any", service_tag = null, action = "Deny", priority = 2147483647 }
+    { name = "deny-all", ip_address = "0.0.0.0/0", service_tag = null, action = "Deny", priority = 2147483647 }
   ]
   tags = var.app_services["app1"].tags
 }
@@ -64,7 +64,7 @@ module "app2" {
   ip_restrictions = [
     { name = "allow-ip", action = "Allow", ip_address = "18.153.146.156/32", service_tag = null, priority = 65000 },
     { name = "allow-tm", action = "Allow", service_tag = "AzureTrafficManager", ip_address = null, priority = 65000 },
-    { name = "deny-all", ip_address = "Any", service_tag = null, action = "Deny", priority = 2147483647 }
+    { name = "deny-all", ip_address = "0.0.0.0/0", service_tag = null, action = "Deny", priority = 2147483647 }
   ]
   tags = var.app_services["app2"].tags
 }
