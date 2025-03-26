@@ -49,3 +49,14 @@ traffic_manager = {
   routing_method = "Performance"
   tags           = { Creator = "bandari_shashank@epam.com" }
 }
+
+access_rules = {
+  allow_ip_rule = {
+    name       = "allow-ip"       # Rule name for IP-based restriction
+    allowed_ip = "18.153.146.156" # IP address for verification agent
+  },
+  allow_tm_rule = {
+    name        = "allow-tm"            # Rule name for Traffic Manager-based restriction
+    service_tag = "AzureTrafficManager" # Service tag for Traffic Manager
+  }
+}

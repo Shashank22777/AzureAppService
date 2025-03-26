@@ -34,3 +34,16 @@ variable "traffic_manager" {
   })
 }
 
+variable "access_rules" {
+  type = object({
+    allow_ip_rule = object({
+      name       = string
+      allowed_ip = string
+    }),
+    allow_tm_rule = object({
+      name        = string
+      service_tag = string
+    })
+  })
+  description = "Rules for access restrictions."
+}
