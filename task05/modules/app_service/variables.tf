@@ -1,35 +1,40 @@
 variable "name" {
+  description = "The name of the Windows Web App"
   type        = string
-  description = "The name of the Windows App Service."
-}
-
-variable "location" {
-  type        = string
-  description = "The Azure region where the App Service will be deployed."
 }
 
 variable "resource_group_name" {
+  description = "The name of the resource group in which to create the Windows Web App"
   type        = string
-  description = "The name of the resource group where the App Service will be created."
+}
+
+variable "location" {
+  description = "The Azure location where the Windows Web App should exist"
+  type        = string
 }
 
 variable "service_plan_id" {
+  description = "The ID of the App Service Plan to use"
   type        = string
-  description = "The ID of the App Service Plan associated with this Windows App Service."
 }
 
-variable "ip_restrictions" {
+variable "allowed_ip" {
+  description = "IP address to allow access"
+  type        = string
+}
+
+variable "ip_restriction_rules" {
+  description = "IP restriction rules configuration"
   type = list(object({
     name        = string
+    priority    = number
     ip_address  = optional(string)
     service_tag = optional(string)
-    action      = string
-    priority    = number
   }))
-  description = "List of IP restrictions applied to the App Service."
 }
 
 variable "tags" {
+  description = "A mapping of tags to assign to the resource"
   type        = map(string)
-  description = "Tags to associate with the App Service."
+  default     = {}
 }
